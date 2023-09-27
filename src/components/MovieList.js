@@ -1,11 +1,11 @@
 import React from 'react';
-
+import { useSelector, connect } from 'react-redux';
+import {store} from './../index';
 import MovieListItem from './MovieListItem';
 import MovieListFooter from './MovieListFooter';
 
-const MovieList = (props) => {
-  const movies = [];
-
+const MovieList = (props) => {  
+  const movies = useSelector(store => store.movieReducer.movies); 
   return (
     <div className="flex-1">
       <div className="overflow-hidden bg-white rounded-md shadow mb-4 sm:min-h-[400px]">
@@ -16,7 +16,7 @@ const MovieList = (props) => {
               <th>Yönetmen</th>
               <th>Tür</th>
               <th>Metascore</th>
-              <th></th>
+              <th></th>+
             </tr>
           </thead>
 
@@ -33,4 +33,4 @@ const MovieList = (props) => {
   );
 }
 
-export default MovieList;
+export default connect(null, {})(MovieList);

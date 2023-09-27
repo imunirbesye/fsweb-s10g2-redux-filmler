@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useReducer } from "react";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import MovieList from './components/MovieList';
 import Movie from './components/Movie';
+
+import reducer, { initialState } from './reducers/movieReducer'; 
+import { store } from './index';
 
 import AppHeader from './components/AppHeader';
 
@@ -12,7 +15,8 @@ import FavoriteMovieList from './components/FavoriteMovieList';
 
 const App = props => {
   const displayFavorites = true;
-
+  const [state, dispatch] = useReducer(reducer, initialState);
+  
   return (
     <div>
       <nav className="bg-zinc-800 px-6 py-3">
@@ -34,7 +38,7 @@ const App = props => {
             </Route>
 
             <Route path="/movies">
-              <MovieList />
+              <MovieList store={store} />
             </Route>
 
             <Route path="/">
